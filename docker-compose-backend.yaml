@@ -1,0 +1,143 @@
+version: '3'
+
+services:
+
+  # redis1:
+  #   container_name: redis1
+  #   image: 'bitnami/redis:latest'
+  #   environment:
+  #     - ALLOW_EMPTY_PASSWORD=yes
+
+  #   user: root
+  #   volumes:
+  #     - ../container-storage/redis_data:/bitnami/redis/data
+  #   ports:
+  #   - '6379:6379'
+  #   networks:
+  #     vpc:
+  #       ipv4_address: 172.19.1.22
+
+  # zookeeper-server1:
+  #   container_name: zookeeper1
+  #   image: 'bitnami/zookeeper:latest'
+  #   ports:
+  #     - '2181:2181'
+  #   volumes:
+  #     - ../container-storage/zookeeper_data/data:/var/lib/zookeeper/data
+  #     - ../container-storage/zookeeper_data/txn-logs:/var/lib/zookeeper/log
+  #   environment:
+  #     - ALLOW_ANONYMOUS_LOGIN=yes
+  #   networks:
+  #     vpc:
+  #       ipv4_address: 172.19.1.23
+
+  # kafka-server1:
+  #   container_name: kafka1
+  #   image: 'bitnami/kafka:3.4.0-debian-11-r20'
+  #   ports:
+  #     - '9092:9092'
+  #     - '9093:9093'
+  #   volumes:
+  #     - ../container-storage/kafka_data:/var/lib/kafka/data
+  #   environment:
+  #     - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181
+  #     - KAFKA_BROKER_ID=2
+  #     - ALLOW_PLAINTEXT_LISTENER=yes
+  #     - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+  #     - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+  #     - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka1:9092,EXTERNAL://localhost:9093
+  #     - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
+  #   depends_on:
+  #     - zookeeper-server1
+  #   networks:
+  #     vpc:
+  #       ipv4_address: 172.19.1.24
+
+  cockroach11:
+    container_name: cockroach11
+    image: cockroachdb/cockroach:v21.2.2
+
+    command: start --insecure --join=cockroach11,cockroach21,cockroach31 --advertise-addr=cockroach11 --listen-addr=0.0.0.0
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+    volumes:
+      - ../container-storage/cockroach_data/cockroach1:/cockroach/cockroach-data
+    networks:
+      vpc:
+        ipv4_address: 172.19.1.1
+
+  cockroach21:
+    container_name: cockroach21
+    image: cockroachdb/cockroach:v21.2.2
+
+    command: start --insecure --join=cockroach11,cockroach21,cockroach31 --advertise-addr=cockroach21 --listen-addr=0.0.0.0
+    volumes:
+      - ../container-storage/cockroach_data/cockroach2:/cockroach/cockroach-data
+    depends_on:
+      - cockroach11
+    networks:
+      vpc:
+        ipv4_address: 172.19.1.2
+
+  cockroach31:
+    container_name: cockroach31
+    image: cockroachdb/cockroach:v21.2.2
+
+    command: start --insecure --join=cockroach11,cockroach21,cockroach31 --advertise-addr=cockroach31 --listen-addr=0.0.0.0
+    volumes:
+      - ../container-storage/cockroach_data/cockroach3:/cockroach/cockroach-data
+    depends_on:
+      - cockroach11
+    networks:
+      vpc:
+        ipv4_address: 172.19.1.3
+
+  # solr1:
+  #   container_name: solr1
+  #   image: solr:8.11.1
+  #   ports:
+  #     - "8983:8983"
+  #   volumes:
+  #     - solr_data:/var/solr
+  #   # command:
+  #   #  - solr-precreate
+  #   environment:
+  #     - SOLR_OPTS=-Dsolr.disableConfigSetsCreateAuthChecks=true
+  #                 -Xmx4096m -Xms4096m
+  #   entrypoint:
+  #     - docker-entrypoint.sh
+  #     - solr
+  #     - start
+  #     - -c
+  #     - -f
+  #   networks:
+  #     vpc:
+  #       ipv4_address: 172.19.1.28
+
+#  scylladb:
+#    container_name: scylladb
+#    image: scylladb/scylla
+#    volumes:
+#      - /var/lib/scylla:/var/lib/scylla
+#    ports:
+#      - "9042:9042"
+#      - "9160:9160"
+#      - "10000:10000"
+#      - "7000-7001:7000-7001"
+#    networks:
+#      vpc:
+#        ipv4_address: 172.18.1.29
+
+networks:
+  vpc:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+
+volumes:
+  solr_data:
+    external: false

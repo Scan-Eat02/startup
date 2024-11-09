@@ -1,0 +1,165 @@
+services:
+  react-admin:
+    image: yashd26/scan_eat:react-admin
+    container_name: react-admin
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.1
+
+  react-client:
+    image: yashd26/scan_eat:react-client
+    container_name: react-client
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3001:3000"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.2
+
+  auth-service1:
+    image: yashd26/scan_eat:auth-service
+    container_name: auth-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8081:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.3
+
+  cart-service1:
+    image: yashd26/scan_eat:cart-service
+    container_name: cart-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8082:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.4
+
+  event-service1:
+    image: yashd26/scan_eat:event-service
+    container_name: event-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8083:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.5
+
+  kafka-queue-service1:
+    image: yashd26/scan_eat:kafka-queue-service
+    container_name: kafka-queue-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8084:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.6
+
+  order-service1:
+    image: yashd26/scan_eat:order-service
+    container_name: order-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8085:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.7
+
+  payment-service1:
+    image: yashd26/scan_eat:payment-service
+    container_name: payment-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8086:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.8
+
+  product-service1:
+    image: yashd26/scan_eat:product-service
+    container_name: product-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8087:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.9
+
+  store-service1:
+    image: yashd26/scan_eat:store-service
+    container_name: store-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8088:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.10
+
+  user-service1:
+    image: yashd26/scan_eat:user-service
+    container_name: user-service1
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ${PWD}/config:/scan_eat/docker-config/
+    ports:
+      - 8089:8080
+    command: >
+      /bin/bash -c "cd /scan_eat && node index.js"
+    networks:
+      vpc:
+        ipv4_address: 172.19.2.11
+networks:
+  vpc:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
