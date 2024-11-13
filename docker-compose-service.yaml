@@ -1,25 +1,27 @@
+version: '3'
+
 services:
   react-admin:
     image: yashd26/scan_eat:react-admin
-    container_name: react-admin
+    container_name: react-admin1
     environment:
       - NODE_ENV=development
     ports:
       - "3000:3000"
     networks:
       vpc:
-        ipv4_address: 172.19.2.1
+        ipv4_address: 172.19.2.2
 
   react-client:
     image: yashd26/scan_eat:react-client
-    container_name: react-client
+    container_name: react-client1
     environment:
       - NODE_ENV=development
     ports:
       - "3001:3000"
     networks:
       vpc:
-        ipv4_address: 172.19.2.2
+        ipv4_address: 172.19.2.3
 
   auth-service1:
     image: yashd26/scan_eat:auth-service
@@ -34,7 +36,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.3
+        ipv4_address: 172.19.2.4
 
   cart-service1:
     image: yashd26/scan_eat:cart-service
@@ -49,7 +51,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.4
+        ipv4_address: 172.19.2.5
 
   event-service1:
     image: yashd26/scan_eat:event-service
@@ -64,7 +66,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.5
+        ipv4_address: 172.19.2.6
 
   kafka-queue-service1:
     image: yashd26/scan_eat:kafka-queue-service
@@ -79,7 +81,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.6
+        ipv4_address: 172.19.2.7
 
   order-service1:
     image: yashd26/scan_eat:order-service
@@ -94,7 +96,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.7
+        ipv4_address: 172.19.2.8
 
   payment-service1:
     image: yashd26/scan_eat:payment-service
@@ -109,7 +111,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.8
+        ipv4_address: 172.19.2.9
 
   product-service1:
     image: yashd26/scan_eat:product-service
@@ -124,7 +126,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.9
+        ipv4_address: 172.19.2.10
 
   store-service1:
     image: yashd26/scan_eat:store-service
@@ -139,7 +141,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.10
+        ipv4_address: 172.19.2.11
 
   user-service1:
     image: yashd26/scan_eat:user-service
@@ -154,7 +156,7 @@ services:
       /bin/bash -c "cd /scan_eat && node index.js"
     networks:
       vpc:
-        ipv4_address: 172.19.2.11
+        ipv4_address: 172.19.2.12
 networks:
   vpc:
     driver: bridge
