@@ -1,4 +1,5 @@
 To make images of all the services on your local environment, compose file is needed to be run :
+ - Run ./update_local_ip.sh to update the local IP address in nginx.config file
  - docker-compose -f docker-compose-backend.yaml up
  - docker-compose -f docker-compose-service.yaml up
  - docker exec -it cockroach11 cockroach init --insecure
