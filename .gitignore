@@ -13,3 +13,8 @@ build/
 
 # Ignore temporary files
 .DS_Store
+
+# Ignore package-lock.json
+package-lock.json
+
+.idea/

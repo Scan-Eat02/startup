@@ -11,8 +11,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.1
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   react-client:
     image: yashd26/scan_eat:react-client
@@ -24,8 +22,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.2
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   auth-service1:
     image: yashd26/scan_eat:auth-service
@@ -41,8 +37,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.3
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   cart-service1:
     image: yashd26/scan_eat:cart-service
@@ -58,8 +52,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.4
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   event-service1:
     image: yashd26/scan_eat:event-service
@@ -75,8 +67,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.5
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   kafka-queue-service1:
     image: yashd26/scan_eat:kafka-queue-service
@@ -92,8 +82,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.6
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   order-service1:
     image: yashd26/scan_eat:order-service
@@ -109,8 +97,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.7
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   payment-service1:
     image: yashd26/scan_eat:payment-service
@@ -126,8 +112,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.8
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   product-service1:
     image: yashd26/scan_eat:product-service
@@ -143,8 +127,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.9
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   store-service1:
     image: yashd26/scan_eat:store-service
@@ -160,8 +142,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.10
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 
   user-service1:
     image: yashd26/scan_eat:user-service
@@ -177,14 +157,12 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.11
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
   
   nginx:
     image: nginx:latest
     container_name: nginx-proxy
     ports:
-      - "80:80"
+      - "81:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
@@ -200,8 +178,6 @@ services:
     networks:
       vpc:
         ipv4_address: 172.19.2.12
-    extra_hosts:
-      - "host.docker.internal:$LOCAL_IPv4"
 networks:
   vpc:
     driver: bridge
