@@ -217,4 +217,9 @@ http {
 
         }
     }
+
+    # Global timeouts
+    proxy_connect_timeout 3s;  # Reduce connection timeout to 5 seconds
+    proxy_read_timeout 3s;    # Reduce read timeout to 10 seconds
+    proxy_send_timeout 3s;    # Reduce send timeout to 10 seconds
 }
