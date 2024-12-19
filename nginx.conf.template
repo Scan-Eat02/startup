@@ -62,15 +62,19 @@ http {
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
 
-            # Handle CORS
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
-            proxy_pass http://auth_service; 
+            proxy_pass http://auth_service;
         }
 
         location /cart_service/ {
@@ -79,16 +83,20 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
-            # Handle CORS (optional, for development)
+
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
             proxy_pass http://cart_service;
-
         }
 
         location /event_service/ {
@@ -97,11 +105,16 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
-            # Handle CORS (optional, for development)
+
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
@@ -115,11 +128,16 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
-            # Handle CORS (optional, for development)
+            
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
@@ -133,11 +151,16 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
-            # Handle CORS (optional, for development)
+            
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
@@ -151,11 +174,16 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
-            # Handle CORS (optional, for development)
+            
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
@@ -169,11 +197,16 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
-            # Handle CORS (optional, for development)
+            
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
@@ -187,11 +220,16 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
-            # Handle CORS (optional, for development)
+            
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
@@ -205,11 +243,16 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_set_header Connection "keep-alive";
-            # Handle CORS (optional, for development)
+            
+            proxy_hide_header Access-Control-Allow-Origin;
             add_header Access-Control-Allow-Origin * always;
             add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
-            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range";
+            add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
+
             if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Origin * always;
+                add_header Access-Control-Allow-Methods 'GET,HEAD,PUT,PATCH,POST,DELETE' always;
+                add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range" always;
                 return 204;
             }
 
