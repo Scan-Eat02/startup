@@ -16,5 +16,6 @@ build/
 
 # Ignore package-lock.json
 package-lock.json
+nginx.conf
 
 .idea/

@@ -20,6 +20,10 @@ async function doPostgreMigration() {
     const dialectOptions = {
       multipleStatements: true,
       decimalNumbers: true,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false, // Bypasses CA verification (not recommended for production)
+      },
     };
 
     const sequelize = new Sequelize(database, CONFIG.cockroach.username, CONFIG.cockroach.password, {
